@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Student Portfolio</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Portfolio<span>Chayapat</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="greeting">สวัสดีครับ ผมชื่อ</p>
+            <h1 class="name">ชยพัทธ์ พินิตย์อัทธยา</h1>
+            <h2 class="role">Chayapat Pinitatthaya (Auto)</h2>
+            <h2 class="role">นักศึกษาวิทยาการคอมพิวเตอร์</h2>
+            <p class="summary">
+                นักศึกษาวิทยาการคอมพิวเตอร์ผู้มีความมุ่งมั่นและหลงใหลในการแก้ไขปัญหา Application และ Hardware
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn primary-btn">ดูผลงานของฉัน</a>
+                <a href="#contact" class="btn secondary-btn">ติดต่อฉัน</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Add a beautiful code snippet illustration or placeholder -->
+            <div class="code-window">
+                <div class="window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <pre><code><span class="keyword">const</span> <span class="variable">student</span> = {
+    <span class="property">name</span>: <span class="string">"Chayapat Pinitatthaya "</span>,
+    <span class="property">major</span>: <span class="string">"Computer Science"</span>,
+    <span class="property">passion</span>: [<span class="string">"Coding"</span>, <span class="string">"Learning"</span>, <span class="string">"Hardware"</span>],
+    <span class="method">code</span>: <span class="keyword">function</span>() {
+        <span class="keyword">return</span> <span class="string">"Hello World!"</span>;
+    }
+};</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">เกี่ยวกับฉัน</h2>
+        <div class="about-container glass-card">
+            <div class="about-flex">
+                <div class="about-image">
+                    <!-- นำรูปภาพของคุณไปวางในโฟลเดอร์ e:\myportfolio และตั้งชื่อว่า profile.jpg -->
+                    <img src="images/chayapat3.jpg" alt="Chayapat Pinitatthaya" class="profile-img">
+                </div>
+                <div class="about-text">
+                    <h3>กำลังศึกษาที่ <span class="highlight">มหาวิทยาลัยกรุงเทพ</span></h3>
+                    <p>ชั้นปีที่ 4 คณะเทคโนโลยีสารสนเทศและนวัตกรรม สาขาวิทยาการคอมพิวเตอร์</p>
+                    <p>เป้าหมายของผมคืออยากทำงานเกี่ยวกับ Back-end, IT-Support
+                        ผมชอบในการแก้ไขปัญหา เช่น แก้ปัญหาCodeหลังบ้าน, <br>แก้ปัญหา Hardware เช่น PC
+                        ว่ามีปัญหาอะไรที่ทำให้เปิดไม่ติดหรืออื่นๆ <br>ที่ผ่านมาผมประกอบคอมพิวเตอร์ใช้เองมาตลอด
+                        และยังสามารถประยุกต์ใช้ AI เพื่อช่วยในการแก้ปัญหา Programming และโค้ดดิ้งได้อย่างมีประสิทธิภาพ
+                        ช่วยลดระยะเวลาในการทำงานให้รวดเร็วและแม่นยำยิ่งขึ้น</p>
+
+                    <h4 class="mt-4">ประวัติการศึกษา (Education)</h4>
+                    <ul class="education-list">
+                        <li>
+                            <strong>ปริญญาตรี (กำลังศึกษา ปีที่ 4)</strong> - วิทยาการคอมพิวเตอร์, มหาวิทยาลัยกรุงเทพ
+                            (ส.ค.
+                            2022 - ปัจจุบัน)<br>
+                            <em>เกรดเฉลี่ยสะสม (CUM GPA): 3.11</em>
+                        </li>
+                        <li>
+                            <strong>ประกาศนียบัตรวิชาชีพ (ปวช.)</strong> - คอมพิวเตอร์ธุรกิจ,
+                            วิทยาลัยเทคโนโลยีภาคตะวันออก
+                            (E.TECH) (พ.ค. 2018 - เม.ย. 2021)<br>
+                            <em>เกรดเฉลี่ยสะสม (GPA): 3.47</em>
+                        </li>
+                    </ul>
+
+                    <h4 class="mt-4">รางวัลและการแข่งขัน (Awards)</h4>
+                    <ul class="education-list">
+                        <li>
+                            <strong>Basic computer networking Installation skills 2021</strong><br>
+                            Vocational Certificate - Gold Medal
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <h2 class="section-title">ทักษะความสามารถ (Skills)</h2>
+        <div class="skills-grid">
+            <!-- Programming Languages -->
+            <div class="skill-category glass-card">
+                <h3>ภาษาโปรแกรม (Languages)</h3>
+                <div class="skill-items">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                </div>
+            </div>
+
+            <!-- Web & Computer Skills -->
+            <div class="skill-category glass-card">
+                <h3>การพัฒนาเว็บและคอมพิวเตอร์</h3>
+                <div class="skill-items">
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">Express</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">MongoDB</div>
+                    <div class="skill-item">Git & VS Code</div>
+                    <div class="skill-item">Microsoft Office</div>
+                    <div class="skill-item">Adobe Creative Suite</div>
+                    <div class="skill-item" style="border-color: var(--accent-purple); color: var(--accent-purple);">AI
+                        for Programming</div>
+                </div>
+            </div>
+
+            <!-- Hard & Soft Skills -->
+            <div class="skill-category glass-card">
+                <h3>ทักษะอื่นๆ (Hard & Soft Skills)</h3>
+                <div class="skill-items">
+                    <div class="skill-item">Computer Assembly</div>
+                    <div class="skill-item">Network Installation</div>
+                    <div class="skill-item">Graphic Design</div>
+                    <div class="skill-item">Data Analysis</div>
+                    <div class="skill-item">Team Leadership</div>
+                    <div class="skill-item">Time Management</div>
+                    <div class="skill-item">Collaboration</div>
+                    <div class="skill-item">Critical Thinking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">ผลงานโดดเด่น</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <iframe src="https://drive.google.com/file/d/1By1B8R_n1AyqvSvS3f_6Bff3La97M33s/preview" width="100%"
+                        height="200" style="border-radius: 12px 12px 0 0; border: none;" allow="autoplay">
+                    </iframe>
+                </div>
+                <div class="project-info">
+                    <h3>BenefitCheck - ตรวจสอบสิทธิสวัสดิการ</h3>
+                    <p>โปรเจกต์พัฒนาระบบสวัสดิการเพื่อบริหารจัดการและตรวจสอบสิทธิประโยชน์ต่างๆ ของบุคลากรหรือสมาชิก</p>
+                    <div class="project-tech">
+                        <span>หน้าที่ Back-end</span>
+                        <span>Management System</span>
+                    </div>
+                    <a href="https://github.com/chayapat2546pinitatthaya-dot/project_welfarebenefit-main"
+                        target="_blank" class="project-link">ดู Source Code ➔</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <iframe src="https://drive.google.com/file/d/1CwiUz554yS_e4HxZ-LOLy5i-FnnbnXP9/preview" width="100%"
+                        height="200" style="border-radius: 12px 12px 0 0; border: none;" allow="autoplay">
+                    </iframe>
+                </div>
+                <div class="project-info">
+                    <h3>ระบบเช่าซื้อเฟอร์นิเจอร์ (Hire Purchase Furniture System)</h3>
+                    <p>ระบบบริหารจัดการการเช่าซื้อเฟอร์นิเจอร์ รองรับข้อมูลลูกค้า การผ่อนชำระ และการจัดการคลังสินค้า</p>
+                    <div class="project-tech">
+                        <span>หน้าที่ Back-end</span>
+                        <span>Full Website</span>
+                    </div>
+                    <a href="https://github.com/chayapat2546pinitatthaya-dot/HirePurchaseFunitureCaseStudentSangsawang"
+                        target="_blank" class="project-link">ดู Source Code ➔</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card glass-card">
+                <div class="project-img placeholder-img">
+                    <span>...</span>
+                </div>
+                <div class="project-info">
+                    <h3>ผลงานอื่นๆ ในอนาคต</h3>
+                    <p>กำลังพัฒนาโปรเจกต์ใหม่ๆ เพื่อเสริมสร้างทักษะและความเชี่ยวชาญในด้านต่างๆ ต่อไป</p>
+                    <div class="project-tech">
+                        <span>Upcoming</span>
+                    </div>
+                    <a href="https://github.com/chayapat2546pinitatthaya-dot" target="_blank"
+                        class="project-link">เยี่ยมชม GitHub ➔</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates-section">
+        <h2 class="section-title">ใบประกาศนียบัตร (Certificates)</h2>
+        <div class="projects-grid">
+            <!-- Certificate 1 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <img src="images/Coursera_GenAI For Application Developers.jpg"
+                        alt="GenAI for Application Developers"
+                        style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
+                </div>
+                <div class="project-info">
+                    <h3>GenAI for Application Developers</h3>
+                    <p>Coursera Instructor Network</p>
+                    <a href="images/Coursera_GenAI For Application Developers.jpg" target="_blank"
+                        class="project-link">ดูรูปภาพขนาดเต็ม ➔</a>
+                </div>
+            </div>
+
+            <!-- Certificate 2 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <img src="images/Coursera_Customer Service with Python Build a Chatbot using ChatGPT.jpg"
+                        alt="Customer Service with Python"
+                        style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
+                </div>
+                <div class="project-info">
+                    <h3>Build a Chatbot using ChatGPT (Python)</h3>
+                    <p>Coursera Instructor Network</p>
+                    <a href="images/Coursera_Customer Service with Python Build a Chatbot using ChatGPT.jpg"
+                        target="_blank" class="project-link">ดูรูปภาพขนาดเต็ม ➔</a>
+                </div>
+            </div>
+
+            <!-- Certificate 3 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <img src="images/CyberSecurity Awareness.png" alt="CyberSecurity Awareness"
+                        style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
+                </div>
+                <div class="project-info">
+                    <h3>CyberSecurity Awareness</h3>
+                    <p>Thailand Digital Government Academy (TDGA)</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="images/CyberSecurity Awareness.png" target="_blank" class="project-link">ดูรูปภาพ ➔</a>
+                        <a href="images/TDGA_CyberSecurity Awareness.pdf" target="_blank" class="project-link">ดู PDF
+                            ➔</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate 4 -->
+            <div class="project-card glass-card">
+                <div class="project-img">
+                    <img src="images/Digital Literacy.png" alt="Digital Literacy"
+                        style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
+                </div>
+                <div class="project-info">
+                    <h3>Digital Literacy</h3>
+                    <p>Thailand Digital Government Academy (TDGA)</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="images/Digital Literacy.png" target="_blank" class="project-link">ดูรูปภาพ ➔</a>
+                        <a href="images/TDGA_Digital Literacy.pdf" target="_blank" class="project-link">ดู PDF ➔</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">ติดต่อฉัน</h2>
+        <div class="contact-container glass-card">
+            <p>หากสนใจผลงานของผมหรือต้องการสอบถามข้อมูลเพิ่มเติม สามารถติดต่อได้ที่:</p>
+            <div class="contact-details">
+                <a href="tel:+66944139232" class="contact-item">
+                    Line or Tell📱 +66 94-413-9232
+                </a>
+                <a href="mailto:chayapat.pini@gmail.com" class="contact-item">
+                    1.📧 chayapat.pini@Bumail.net <br>
+                    2.📧 chayapat.pini03@gmail.com
+                </a>
+                <div class="contact-item">
+                    📍 Samut prakarn, Pathumthani, Thailand
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Chayapat Pinitatthaya. นักศึกษาวิทยาการคอมพิวเตอร์</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
