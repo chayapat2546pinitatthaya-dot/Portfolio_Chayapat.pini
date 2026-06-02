@@ -78,4 +78,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     fadeElements.forEach(el => scrollObserver.observe(el));
+
+    // 5. Fullscreen image lightbox
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCounter = lightbox.querySelector('.lightbox-counter');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+    const lightboxNext = lightbox.querySelector('.lightbox-next');
+
+    let lightboxSlides = [];
+    let lightboxIndex = 0;
+    let lightboxOnGoTo = null;
+    let lightboxOnResume = null;
+
+    const zoomIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6h-2V6.41l-7.29 7.3-1.42-1.42 7.3-7.29H15V3zM3 9h2v7h7v2H3V9zm18 12h-6v-2h4.59l-7.3-7.29 1.42-1.42 7.29 7.3V15h2v6z"/></svg>`;
+
+    function updateLightboxImage() {
+        const slide = lightboxSlides[lightboxIndex];
+        lightboxImg.src = slide.src;
+        lightboxImg.alt = slide.alt;
+        lightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxSlides.length}`;
+    }
+
+    function openLightbox(slides, index, onGoTo, onPause, onResume) {
+        lightboxSlides = slides;
+        lightboxIndex = index;
+        lightboxOnGoTo = onGoTo;
+        lightboxOnResume = onResume || null;
+        if (onPause) onPause();
+        updateLightboxImage();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+        if (lightboxOnResume) lightboxOnResume();
+        lightboxOnResume = null;
+    }
+
+    function lightboxGoTo(index) {
+        lightboxIndex = (index + lightboxSlides.length) % lightboxSlides.length;
+        updateLightboxImage();
+        if (lightboxOnGoTo) lightboxOnGoTo(lightboxIndex);
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => lightboxGoTo(lightboxIndex - 1));
+    lightboxNext.addEventListener('click', () => lightboxGoTo(lightboxIndex + 1));
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') lightboxGoTo(lightboxIndex - 1);
+        if (e.key === 'ArrowRight') lightboxGoTo(lightboxIndex + 1);
+    });
+
+    // 6. Project card image slideshows
+    document.querySelectorAll('[data-slideshow]').forEach((slideshow) => {
+        const slides = Array.from(slideshow.querySelectorAll('.slide'));
+        const dotsContainer = slideshow.querySelector('.slideshow-dots');
+        if (!slides.length || !dotsContainer) return;
+
+        let current = 0;
+        let timer;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', `ภาพที่ ${index + 1}`);
+            dot.addEventListener('click', () => goTo(index, true));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.dot');
+
+        function pauseAutoPlay() {
+            clearInterval(timer);
+        }
+
+        function openFullscreen(index) {
+            openLightbox(
+                slides,
+                index,
+                (i) => goTo(i),
+                pauseAutoPlay,
+                startAutoPlay
+            );
+        }
+
+        const zoomBtn = document.createElement('button');
+        zoomBtn.type = 'button';
+        zoomBtn.className = 'slideshow-zoom-btn';
+        zoomBtn.setAttribute('aria-label', 'ดูภาพเต็มจอ');
+        zoomBtn.innerHTML = zoomIcon;
+        zoomBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openFullscreen(current);
+        });
+        slideshow.appendChild(zoomBtn);
+
+        function goTo(index, resetTimer = false) {
+            current = (index + slides.length) % slides.length;
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+            if (resetTimer) startAutoPlay();
+        }
+
+        function startAutoPlay() {
+            clearInterval(timer);
+            timer = setInterval(() => goTo(current + 1), 4000);
+        }
+
+        slideshow.addEventListener('mouseenter', () => clearInterval(timer));
+        slideshow.addEventListener('mouseleave', startAutoPlay);
+
+        slides.forEach((slide, index) => {
+            slide.style.cursor = 'zoom-in';
+            slide.addEventListener('click', () => openFullscreen(index));
+        });
+
+        startAutoPlay();
+    });
 });

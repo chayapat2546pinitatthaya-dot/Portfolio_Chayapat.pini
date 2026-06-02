@@ -461,7 +461,7 @@ code {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
     gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -475,20 +475,28 @@ code {
 }
 
 .project-img {
-    height: 200px;
+    height: 300px; /* เพิ่มความสูงเป็น 300px เพื่อความชัดเจนของสื่อ */
     background: linear-gradient(45deg, #1e1e1e, #2d2d2d);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
     font-weight: 600;
+    position: relative;
     overflow: hidden;
 }
 
-.project-img video {
+.project-img iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border: none;
+    border-radius: 16px 16px 0 0;
+}
+
+/* คลาสพิเศษสำหรับสไลด์โชว์ที่เป็นรูปแนวตั้งหรือต้องการแสดงภาพเต็มแบบไม่ถูกครอบ */
+.project-slideshow.slideshow-contain .slide {
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .project-info {
@@ -536,6 +544,229 @@ code {
 .project-link:hover {
     color: var(--accent-blue);
     letter-spacing: 1px;
+}
+
+/* Project image slideshow */
+.project-slideshow {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    background: #0d1117;
+}
+
+.slideshow-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.project-slideshow .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.project-slideshow .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.slideshow-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.slideshow-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slideshow-dots .dot:hover,
+.slideshow-dots .dot.active {
+    background: var(--accent-blue);
+    transform: scale(1.15);
+}
+
+.slideshow-zoom-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(6px);
+}
+
+.slideshow-zoom-btn:hover {
+    background: rgba(0, 240, 255, 0.2);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: scale(1.08);
+}
+
+.slideshow-zoom-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Fullscreen image lightbox */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5, 8, 15, 0.92);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: min(95vw, 1400px);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: calc(90vh - 3rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+.lightbox-counter {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.lightbox-close,
+.lightbox-nav {
+    position: absolute;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(6px);
+    z-index: 2;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.lightbox-close {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.75rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4px;
+}
+
+.lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+.lightbox-prev {
+    left: 1.25rem;
+}
+
+.lightbox-next {
+    right: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .image-lightbox {
+        padding: 1rem;
+    }
+
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .lightbox-prev {
+        left: 0.5rem;
+    }
+
+    .lightbox-next {
+        right: 0.5rem;
+    }
+
+    .lightbox-close {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
 }
 
 /* ========================
@@ -637,8 +868,17 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .hero,
+    .about-section,
+    .skills-section,
+    .projects-section,
+    .certificates-section,
+    .contact-section {
+        padding: 4rem 5%;
+    }
+
     .name {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .nav-links {
@@ -674,5 +914,21 @@ footer {
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
     }
 }
